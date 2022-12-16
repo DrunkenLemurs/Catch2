@@ -16,6 +16,7 @@ jobs:
       
       - name: Configure build
         working-directory: ${{runner.workspace}}
+        shell: bash
         run: |
           cmake -S . -B ${{runner.workspace}}/build \
                 -DCMAKE_CXX_STANDARD=14 \
