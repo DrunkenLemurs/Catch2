@@ -18,7 +18,8 @@ jobs:
         working-directory: ${{runner.workspace}}
         shell: bash
         run: |
-          cmake -S . -B ${{runner.workspace}}/build \
+          cmake -S $GITHUB_WORKSPACE \
+                -B ${{runner.workspace}}/build \
                 -DCMAKE_CXX_STANDARD=14 \
                 -A ${{matrix.platform}} \
                 --preset all-tests
