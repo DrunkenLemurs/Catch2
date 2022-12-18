@@ -1,5 +1,5 @@
 # This sets the default behaviour, overriding core.autocrlf
-* text=auto
+* text=auto eol=lf
 
 # All source files should have unix line-endings in the repository,
 # but convert to native line-endings on checkout
