@@ -1,5 +1,5 @@
 # This sets the default behaviour, overriding core.autocrlf
-* text=auto
+* text=auto eol=lf
 
 # All source files should have unix line-endings in the repository,
 # but convert to native line-endings on checkout
@@ -9,6 +9,8 @@
 
 # Windows specific files should retain windows line-endings
 *.sln text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
 
 # Keep executable scripts with LFs so they can be run after being
 # checked out on Windows
