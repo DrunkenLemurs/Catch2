@@ -385,7 +385,7 @@ target_include_directories(Catch2
 )
 
 
-add_library(Catch2WithMain
+add_library(Catch2WithMain STATIC
     ${SOURCES_DIR}/internal/catch_main.cpp
 )
 # add_build_reproducibility_settings(Catch2WithMain)
