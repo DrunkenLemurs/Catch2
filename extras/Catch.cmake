@@ -27,6 +27,7 @@ same as the Catch name; see also ``TEST_PREFIX`` and ``TEST_SUFFIX``.
 
     catch_discover_tests(target
                          [TEST_SPEC arg1...]
+                         [FIRST_ARGS  arg1...]
                          [EXTRA_ARGS arg1...]
                          [WORKING_DIRECTORY dir]
                          [TEST_PREFIX prefix]
@@ -65,6 +66,9 @@ same as the Catch name; see also ``TEST_PREFIX`` and ``TEST_SUFFIX``.
   ``TEST_SPEC arg1...``
     Specifies test cases, wildcarded test cases, tags and tag expressions to
     pass to the Catch executable with the ``--list-test-names-only`` argument.
+
+  ``FIRST_ARGS arg1...``
+    Any arguments to pass on the command line to each test case before the test spec.
 
   ``EXTRA_ARGS arg1...``
     Any extra arguments to pass on the command line to each test case.
@@ -131,7 +135,7 @@ function(catch_discover_tests TARGET)
     ""
     ""
     "TEST_PREFIX;TEST_SUFFIX;WORKING_DIRECTORY;TEST_LIST;REPORTER;OUTPUT_DIR;OUTPUT_PREFIX;OUTPUT_SUFFIX"
-    "TEST_SPEC;EXTRA_ARGS;PROPERTIES;DL_PATHS"
+    "TEST_SPEC;FIRST_ARGS;EXTRA_ARGS;PROPERTIES;DL_PATHS"
     ${ARGN}
   )
 
@@ -149,7 +153,7 @@ function(catch_discover_tests TARGET)
   endif()
 
   ## Generate a unique name based on the extra arguments
-  string(SHA1 args_hash "${_TEST_SPEC} ${_EXTRA_ARGS} ${_REPORTER} ${_OUTPUT_DIR} ${_OUTPUT_PREFIX} ${_OUTPUT_SUFFIX}")
+  string(SHA1 args_hash "${_TEST_SPEC} ${_FIRST_ARGS} ${_EXTRA_ARGS} ${_REPORTER} ${_OUTPUT_DIR} ${_OUTPUT_PREFIX} ${_OUTPUT_SUFFIX}")
   string(SUBSTRING ${args_hash} 0 7 args_hash)
 
   # Define rule to generate test list for aforementioned test executable
@@ -168,6 +172,7 @@ function(catch_discover_tests TARGET)
             -D "TEST_EXECUTOR=${crosscompiling_emulator}"
             -D "TEST_WORKING_DIR=${_WORKING_DIRECTORY}"
             -D "TEST_SPEC=${_TEST_SPEC}"
+            -D "TEST_FIRST_ARGS=${_FIRST_ARGS}"
             -D "TEST_EXTRA_ARGS=${_EXTRA_ARGS}"
             -D "TEST_PROPERTIES=${_PROPERTIES}"
             -D "TEST_PREFIX=${_TEST_PREFIX}"

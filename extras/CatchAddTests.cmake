@@ -4,6 +4,7 @@
 set(prefix "${TEST_PREFIX}")
 set(suffix "${TEST_SUFFIX}")
 set(spec ${TEST_SPEC})
+set(first_args ${TEST_FIRST_ARGS})
 set(extra_args ${TEST_EXTRA_ARGS})
 set(properties ${TEST_PROPERTIES})
 set(reporter ${TEST_REPORTER})
@@ -126,6 +127,7 @@ foreach(line ${output})
     "${prefix}${test}${suffix}"
     ${TEST_EXECUTOR}
     "${TEST_EXECUTABLE}"
+    ${first_args}
     "${test_name}"
     ${extra_args}
     "${reporter_arg}"
